@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <style>
+    h2 {
+      color: #0066c0;
+    }
+  </style>
+  <link rel="stylesheet" href="../styles/prism-tricks.css">
+  <script src="../scripts/prism.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <h2>Audio Overview</h2>
+    <div style="display: flex; align-items: center; gap: 1em;">
+      <span>Deep Dive Conversation</span>
+      <audio controls src="../audio/u2-w11-lb2-deep-dive-conversation.mp3"></audio>
+    </div>
+
+    <h2>Getting Started</h2>
+    <ol>
+      <li>Download this <a href="https://qed09.instructure.com/courses/89267/files/8800103/download">
+          starting template</a>
+        (exemplar for your final assessment task).</li>
+      <li>Unzip the file.</li>
+      <li>Open it in VS Code.</li>
+    </ol>
+
+    <h2>Project Overview</h2>
+    <ul>
+      <li>The starting code contains all the HTML and CSS you need.</li>
+      <li>This unit (Unit 2, App development) focuses on JavaScript, not HTML and CSS.</li>
+      <li>If you want to learn about creating HTML and CSS, check out the Unit 1 Web development course.</li>
+    </ul>
+
+    <h2>Setting Up the Project</h2>
+    <ol>
+      <li>Open <code>amazon.html</code> (the homepage) with Live Server.</li>
+      <li>Notice that HTML and CSS create the visual elements, but interactivity requires JavaScript.</li>
+      <li>Create a new folder named <code>scripts</code> to contain all JavaScript files.</li>
+      <li>Create a new file named <code>amazon.js</code> inside the <code>scripts</code> folder.</li>
+      <li>Load <code>amazon.js</code> in <code>amazon.html</code> by adding a script element above the closing body tag:
+        <pre style="font-size: .9em; line-height: 1.2">
+<code class="language-html" style="line-height: 1.2">&lt;script src="./scripts/amazon.js"&gt;&lt;/script&gt;</code></pre>
+      </li>
+    </ol>
+
+    <h2>1. Product Data Structure</h2>
+    <p>We'll move the product information from HTML to JavaScript for better management and interactivity.</p>
+    <ol>
+      <li>In <code>amazon.js</code>, create a variable named <code>products</code> to store the data:
+        <pre style="font-size: .9em; line-height: 1.2">
+<code class="language-js" style="line-height: 1.2">const products = []</code></pre>
+      </li>
+      <li style="margin-top: 1em">Copy the data for each product from <code>amazon.html</code> and create an object for
+        each in the <code>products</code> array.
+      </li>
+    </ol>
+
+    <section style="width: max-content; display: flex; flex-direction: column">
+      <article>
+        <h5 class="green-box">HTML</h5>
+        <pre style="font-size: .8em; line-height: 1.3; padding-block: 0 20px; margin: 0">
+<code class="language-html" style="line-height: 1.3">
+&lt;div class="product-image-container"&gt;
+  &lt;img class="product-image"
+       src="images/products/athletic-cotton-socks-6-pairs.jpg"&gt;
+&lt;/div&gt;
+&lt;div class="product-name limit-text-to-2-lines"&gt;
+  Black and Gray Athletic Cotton Socks - 6 Pairs&lt;/div&gt;
+&lt;div class="product-rating-container"&gt;
+  &lt;img class="product-rating-stars"
+       src="images/ratings/rating-45.png"&gt;
+  &lt;div class="product-rating-count link-primary"&gt;87&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="product-price"&gt;$10.90&lt;/div&gt;</code></pre>
+      </article>
+
+      <div style="align-self: center; font-size: 3em; rotate: 90deg;">&#129187;</div>
+
+      <article style="margin-top: -1.5em">
+        <h5 class="green-box">JavaScript</h5>
+        <pre style="font-size: .8em; line-height: 1.3; margin: 0">
+<code class="language-js" style="line-height: 1.3">const products = [
+  {
+    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
+    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
+    rating: {
+      stars: 4.5,
+      count: 87
+    },
+    priceCents: 1090
+  },
+  // Add more products here
+]</code></pre>
+      </article>
+    </section>
+    <hr>
+    <section style="width: max-content; display: flex; flex-direction: column">
+      <article>
+        <h5 class="green-box">HTML</h5>
+        <pre style="font-size: .8em; line-height: 1.3; padding-block: 0 20px; margin: 0">
+<code class="language-html" style="line-height: 1.3">
+&lt;div class="product-image-container"&gt;
+  &lt;img class="product-image"
+       src="images/products/intermediate-composite-basketball.jpg"&gt;
+&lt;/div&gt;
+&lt;div class="product-name limit-text-to-2-lines"&gt;
+  Intermediate Size Basketball&lt;/div&gt;
+&lt;div class="product-rating-container"&gt;
+  &lt;img class="product-rating-stars"
+       src="images/ratings/rating-40.png"&gt;
+  &lt;div class="product-rating-count link-primary"&gt;127&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="product-price"&gt;$20.95&lt;/div&gt;</code></pre>
+      </article>
+
+      <div style="align-self: center; font-size: 3em; rotate: 90deg;">&#129187;</div>
+
+      <article style="margin-top: -1.5em">
+        <h5 class="green-box">JavaScript</h5>
+        <pre style="font-size: .8em; line-height: 1.3; margin: 0">
+<code class="language-js" style="line-height: 1.3">{
+  image: "images/products/intermediate-composite-basketball.jpg",
+  name: "Intermediate Size Basketball",
+  rating: {
+    stars: 4,
+    count: 127
+  },
+  priceCents: 2095
+}</code></pre>
+      </article>
+    </section>
+    <hr>
+    <section style="width: max-content; display: flex; flex-direction: column">
+      <article>
+        <h5 class="green-box">HTML</h5>
+        <pre style="font-size: .8em; line-height: 1.3; padding-block: 0 20px; margin: 0">
+<code class="language-html" style="line-height: 1.3">
+&lt;div class="product-image-container"&gt;
+  &lt;img class="product-image"
+       src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"&gt;
+&lt;/div&gt;
+&lt;div class="product-name limit-text-to-2-lines"&gt;
+  Adults Plain Cotton T-Shirt - 2 Pack&lt;/div&gt;
+&lt;div class="product-rating-container"&gt;
+  &lt;img class="product-rating-stars"
+       src="images/ratings/rating-45.png"&gt;
+  &lt;div class="product-rating-count link-primary"&gt;56&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="product-price"&gt;$7.99&lt;/div&gt;</code></pre>
+      </article>
+
+      <div style="align-self: center; font-size: 3em; rotate: 90deg;">&#129187;</div>
+
+      <article style="margin-top: -1.5em">
+        <h5 class="green-box">JavaScript</h5>
+        <pre style="font-size: .8em; line-height: 1.3; margin: 0 0 8px">
+<code class="language-js" style="line-height: 1.3">{
+  image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+  name: "Adults Plain Cotton T-Shirt - 2 Pack",
+  rating: {
+    stars: 4.5,
+    count: 56
+  },
+  priceCents: 799
+}</code></pre>
+      </article>
+    </section>
+
+    <div class="note">
+      <strong>Note:</strong> Use <code>priceCents</code> instead of <code>price</code> to avoid issues with decimal
+      calculations in JavaScript.
+    </div>
+
+    <h2>Why Save Data This Way?</h2>
+    <ul>
+      <li>It creates a clear data structure that represents the list of products.</li>
+      <li>It allows for easier management and manipulation of product data using JavaScript.</li>
+      <li>It separates data from presentation, making the code more maintainable.</li>
+    </ul>
+
+    <p>By saving the data in this structured format, we've created a foundation for building interactive features in our
+      project.</p>
+
+    <h2>2. Initializing the HTML string</h2>
+    <p>We'll create an empty string to store our generated HTML:</p>
+    <pre style="font-size: .9em; line-height: 1.2">
+<code class="language-js" style="line-height: 1.2">let productsHTML = ''</code></pre>
+
+    <h2>3. Iterating through products</h2>
+    <p>We'll use the <code>forEach</code> method to loop through each product in the array:</p>
+    <pre style="font-size: .9em; line-height: 1.3">
+<code class="language-js" style="line-height: 1.3">products.forEach(product => {
+// Code to generate HTML for each product will go here
+})</code></pre>
+
+    <h2>4. Generating HTML for each product</h2>
+    <p>Inside the <code>forEach</code> loop, we'll generate HTML for each product:</p>
+    <pre style="font-size: .8em; line-height: 1.3">
+<code class="language-js" style="line-height: 1.3">products.forEach(product => {
+  productsHTML += `
+    &lt;div class="product-container"&gt;
+      &lt;div class="product-image-container"&gt;
+        &lt;img class="product-image" src="${product.image}"&gt;
+      &lt;/div&gt;
+
+      &lt;div class="product-name limit-text-to-2-lines"&gt;
+        ${product.name}
+      &lt;/div&gt;
+
+      &lt;div class="product-rating-container"&gt;
+        &lt;img class="product-rating-stars"
+             src="images/ratings/rating-${product.rating.stars * 10}.png"&gt;
+        &lt;div class="product-rating-count link-primary"&gt;
+          ${product.rating.count}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="product-price"&gt;
+        $${(product.priceCents / 100).toFixed(2)}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `
+})</code></pre>
+
+    <div class="note">
+      <strong>Note:</strong> We use template literals (backticks) for easier multiline string creation and variable
+      interpolation.
+    </div>
+
+    <h2>5. Inserting the generated HTML into the DOM</h2>
+    <p>After generating the HTML for all products, we'll insert it into the DOM:</p>
+    <pre style="font-size: .9em; line-height: 1.2">
+<code class="language-js" style="line-height: 1.2">document.querySelector('.js-products-grid').innerHTML = productsHTML</code></pre>
+    <div class="note">
+      <strong>Note:</strong> Add a class <code>js-products-grid</code> to the <code>products-grid</code> div. This class
+      has been used by the JavaScript to identify where to insert the generated HTML.
+    </div>
+
+    <h2>Explanation of Key Concepts</h2>
+    <h3>Template Literals</h3>
+    <p>Template literals allow us to create multiline strings and embed expressions using <code>${}</code> syntax.
+    </p>
+
+    <h3>String Interpolation</h3>
+    <p>We use <code>${}</code> to insert JavaScript expressions into our HTML string. For example:</p>
+    <ul>
+      <li><code>${product.image}</code> inserts the image URL</li>
+      <li><code>${product.name}</code> inserts the product name</li>
+      <li><code>${product.rating.stars * 10}</code> calculates the correct rating image filename</li>
+      <li><code>${(product.priceCents / 100).toFixed(2)}</code> converts the price from cents to dollars with two
+        decimal places</li>
+    </ul>
+
+    <h3>DOM Manipulation</h3>
+    <p><code>document.querySelector('.js-products-grid')</code> finds the element with the class 'js-products-grid'.
+    </p>
+    <p>Setting the <code>innerHTML</code> property replaces the existing content with our generated HTML.</p>
+
+    <h2>6. Separating Data and Scripts</h2>
+    <p>We need to make an important change to our project structure to improve organisation and maintainability. Let's
+      go through these updates:</p>
+
+    <h3>1. Creating a Separate File for Product Data</h3>
+    <p>The complete product data is in a separate file called <code>products.js</code> in the "data" folder. This
+      separation of concerns makes our code more organised and easier to manage.</p>
+
+    <h3>2. Updating amazon.html</h3>
+    <p>Modify the <code>amazon.html</code> file to include both the product data and the main JavaScript file.
+      Here's what changed:</p>
+    <pre style="font-size: .9em; line-height: 1.2; padding-top: 0">
+<code class="language-html" style="line-height: 1.2">
+&lt;script src="./data/products.js"&gt;&lt;/script&gt;
+&lt;script src="./scripts/amazon.js"&gt;&lt;/script&gt;</code></pre>
+    <ol>
+      <li><code>products.js</code>: This file contains our product data.</li>
+      <li><code>amazon.js</code>: This file contains our main JavaScript code that generates the HTML.</li>
+    </ol>
+    <div class="note">
+      <strong>Note:</strong> The order of these script tags is important. We load <code>products.js</code> first to
+      ensure the product data is available when <code>amazon.js</code> runs.
+    </div>
+
+    <h3>3. Updating amazon.js</h3>
+    <ul>
+      <li>
+        <p>The <code>amazon.js</code> file no longer needs to contain the product data. It now focuses solely on
+          generating
+          and inserting the HTML for our products.</p>
+      </li>
+      <li>Copy the rest of elements from amazon.html:</li>
+      <ul>
+        <li>A quantity selector</li>
+        <li>An "Added to cart" indicator</li>
+        <li>An "Add to Cart" button</li>
+      </ul>
+    </ul>
+    <p>Let's look at the HTML generation code:</p>
+    <pre style="font-size: .8em; line-height: 1.3">
+<code class="language-js" style="line-height: 1.3">productsHTML += `
+  &lt;div class="product-container"&gt;
+    &lt;div class="product-image-container"&gt;
+      &lt;img class="product-image" src="${product.image}"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-name limit-text-to-2-lines"&gt;
+      ${product.name}
+    &lt;/div&gt;
+
+    &lt;div class="product-rating-container"&gt;
+      &lt;img class="product-rating-stars"
+           src="images/ratings/rating-${product.rating.stars * 10}.png"&gt;
+      &lt;div class="product-rating-count link-primary"&gt;
+        ${product.rating.count}
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-price"&gt;
+      $${(product.priceCents / 100).toFixed(2)}
+    &lt;/div&gt;
+
+    &lt;div class="product-quantity-container"&gt;
+      &lt;select&gt;
+        &lt;option selected value="1"&gt;1&lt;/option&gt;
+        &lt;option value="2"&gt;2&lt;/option&gt;
+        &lt;option value="3"&gt;3&lt;/option&gt;
+        &lt;option value="4"&gt;4&lt;/option&gt;
+        &lt;option value="5"&gt;5&lt;/option&gt;
+        &lt;option value="6"&gt;6&lt;/option&gt;
+        &lt;option value="7"&gt;7&lt;/option&gt;
+        &lt;option value="8"&gt;8&lt;/option&gt;
+        &lt;option value="9"&gt;9&lt;/option&gt;
+        &lt;option value="10"&gt;10&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-spacer"&gt;&lt;/div&gt;
+
+    &lt;div class="added-to-cart"&gt;
+      &lt;img src="images/icons/checkmark.png"&gt;
+      Added
+    &lt;/div&gt;
+
+    &lt;button class="add-to-cart-button button-primary"&gt;
+      Add to Cart
+    &lt;/button&gt;
+  &lt;/div&gt;
+`</code></pre>
+
+    <h2>Benefits of This Approach</h2>
+    <ol>
+      <li><strong>Separation of Concerns:</strong> By separating our data (<code>products.js</code>) from our logic
+        (<code>amazon.js</code>),
+        we've made our code more modular and easier to maintain.</li>
+      <li><strong>Improved Readability:</strong> Each file now has a clear, single responsibility, making the code
+        easier to understand and modify.</li>
+      <li><strong>Easier Updates:</strong> If we need to update our product list, we can do so in products.js without
+        touching the main logic in amazon.js.</li>
+    </ol>
+
+    <div class="note">
+      <strong>Remember:</strong> Always consider the organisation of your code as your projects grow. Good structure
+      makes development easier and helps prevent bugs!
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>By using JavaScript to generate HTML dynamically, we've created a flexible system for displaying products.
+      This approach allows for easy updates and modifications to the product list without changing the HTML
+      structure.</p>
+
+    <h2>Next Steps</h2>
+    <p>In upcoming lessons, we'll add functionality to these new elements. We'll learn how to:</p>
+    <ol>
+      <li>Handle button clicks to add items to a cart.</li>
+      <li>Update the quantity of items in the cart based on the selected value.</li>
+      <li>Show the "Added to Cart" indicator when a product is added to the cart.</li>
+      <li>Implement a shopping cart to keep track of added items.</li>
+    </ol>
+  </main>
+</body>
+
+</html>
