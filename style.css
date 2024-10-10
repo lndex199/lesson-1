@@ -50,7 +50,7 @@ h5 {
 
 h2,
 h3 {
-  margin-top: 30px;
+  margin-top: 44px;
 }
 
 h1,
@@ -75,11 +75,15 @@ figcaption {
 ul,
 ol {
   padding: 0;
-  margin: 6px 0 6px 25px;
+  margin: 10px 0 6px 25px;
 }
 
 ol>li::marker {
   font-weight: bold;
+}
+
+li:has(>pre)+li {
+  margin-top: 10px;
 }
 
 pre {
@@ -96,12 +100,17 @@ code {
   border-radius: 4px;
 }
 
+pre>code {
+  padding: 0;
+}
+
 .note {
   width: fit-content;
   background-color: #fff9c4;
   font-size: .9em;
   border-left: 4px solid #ffd600;
   padding: 10px;
+  margin-top: 10px;
 
   & p {
     margin: 0;
